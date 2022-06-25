@@ -30,17 +30,17 @@ while not game_over:
     if(pissy.head.distance(food) < 15):
         food.generate()
         score.score += 1
-        pissy.extend()
-        score.clear()
         score.update()
+        pissy.extend()
     if(pissy.head.xcor() > 290 or pissy.head.xcor() < -290 or pissy.head.ycor() > 290 or pissy.head.ycor() < -290 ):
-        score.gameover()
-        game_over = True
+        score.reset()
+        pissy.reset()
 
     for seg in pissy.segments[1:]:
         if(pissy.head.distance(seg) < 10):
-            score.gameover()
-            game_over = True
+            score.reset()
+            pissy.reset()
+
 
 
 
