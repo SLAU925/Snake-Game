@@ -1,5 +1,7 @@
 from turtle import Turtle
 
+
+
 FONT = ("Arial",15,"normal")
 ALIGNMENT = "center"
 class Score(Turtle):
@@ -10,7 +12,8 @@ class Score(Turtle):
         self.penup()
         self.goto(0,270)
         self.score = 0
-        self.high_score = 0
+        with open("data.txt") as data:
+            self.high_score = int(data.read())
         self.write(arg=f"Score : {self.score}  High Score: {self.high_score}", move=False,align=ALIGNMENT, font=FONT)
 
     def update(self):
@@ -20,6 +23,8 @@ class Score(Turtle):
     def reset(self):
         if(self.score > self.high_score):
             self.high_score = self.score
+            with open("data.txt", mode="w") as data:
+                data.write(f"{self.high_score}")
         self.score = 0
         self.update()
         self.write(arg=f"Score : {self.score}  High Score: {self.high_score}", move=False,align=ALIGNMENT, font=FONT)
